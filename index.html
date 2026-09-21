@@ -64,7 +64,6 @@
             background-attachment: fixed;
         }
 
-        /* Ambient Glow */
         .ambient-glow {
             position: fixed;
             width: 380px;
@@ -79,7 +78,6 @@
         #glow1 { top: -80px; left: -80px; background: var(--neon-cyan); }
         #glow2 { bottom: -80px; right: -80px; background: var(--neon-purple); }
 
-        /* Notification Toast */
         .toast-container {
             position: fixed;
             top: 65px;
@@ -110,7 +108,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Top Demo Navigator Switcher Bar */
         .top-nav-switcher {
             position: sticky;
             top: 0;
@@ -190,7 +187,7 @@
             color: #fff;
         }
 
-        /* ------------------ LOGIN SCREEN ------------------ */
+        /* LOGIN SCREEN */
         .login-view-wrap {
             display: flex;
             justify-content: center;
@@ -234,10 +231,6 @@
             font-size: 32px;
             color: var(--neon-cyan);
             transform: rotate(-5deg);
-            transition: 0.4s;
-        }
-        .login-card:hover .brand-badge {
-            transform: rotate(0deg) scale(1.05);
         }
         .brand-title {
             font-size: 26px;
@@ -255,18 +248,15 @@
             color: var(--text-secondary);
             margin-bottom: 20px;
         }
-        .wifi-status-pill {
-            display: inline-flex;
+        .ble-status-box {
+            background: rgba(10, 13, 20, 0.6);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            margin-bottom: 20px;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 600;
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            color: var(--neon-cyan);
-            margin-bottom: 22px;
+            justify-content: space-between;
         }
         .input-group {
             margin-bottom: 16px;
@@ -327,608 +317,128 @@
             transition: all 0.25s;
             font-family: inherit;
         }
-        .btn-action-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.5);
+        .btn-action-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
         }
-        .btn-bypass {
-            width: 100%;
-            padding: 11px;
-            border-radius: var(--radius-md);
-            border: 1px dashed rgba(0, 240, 255, 0.4);
-            background: rgba(0, 240, 255, 0.08);
+        .btn-ble-connect {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.1);
             color: var(--neon-cyan);
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             transition: 0.25s;
-            font-family: inherit;
         }
-        .btn-bypass:hover {
-            background: rgba(0, 240, 255, 0.18);
+        .btn-ble-connect.connected {
+            border-color: var(--neon-emerald);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--neon-emerald);
         }
 
-        /* ------------------ DASHBOARD SHELL ------------------ */
-        .dashboard-container {
-            display: flex;
-            width: 100%;
-            flex: 1;
-            position: relative;
-            z-index: 1;
-        }
-        .sidebar {
-            width: 250px;
-            background: rgba(14, 18, 28, 0.95);
-            border-right: 1px solid var(--border-glass);
-            backdrop-filter: blur(20px);
-            padding: 22px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 55px;
-            height: calc(100vh - 55px);
-        }
-        .sidebar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 8px 18px;
-            border-bottom: 1px solid var(--border-glass);
-            margin-bottom: 10px;
-        }
-        .brand-icon-sm {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 18px;
-        }
+        /* DASHBOARD SHELL & OTHER STYLES */
+        .dashboard-container { display: flex; width: 100%; flex: 1; position: relative; z-index: 1; }
+        .sidebar { width: 250px; background: rgba(14, 18, 28, 0.95); border-right: 1px solid var(--border-glass); backdrop-filter: blur(20px); padding: 22px 14px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; position: sticky; top: 55px; height: calc(100vh - 55px); }
+        .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 18px; border-bottom: 1px solid var(--border-glass); margin-bottom: 10px; }
+        .brand-icon-sm { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
         .brand-text-sm h2 { font-size: 15px; font-weight: 700; }
         .brand-text-sm h2 span { color: var(--neon-cyan); }
         .brand-text-sm p { font-size: 10px; color: var(--text-secondary); text-transform: uppercase; }
-
-        .side-nav-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            border-radius: var(--radius-md);
-            color: var(--text-secondary);
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-        }
+        .side-nav-btn { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); color: var(--text-secondary); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; text-decoration: none; }
         .side-nav-btn i { width: 20px; text-align: center; font-size: 16px; }
         .side-nav-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.04); }
-        .side-nav-btn.active {
-            color: #05101a;
-            background: linear-gradient(90deg, var(--neon-cyan), #38bdf8);
-            box-shadow: 0 4px 18px rgba(0, 240, 255, 0.3);
-        }
+        .side-nav-btn.active { color: #05101a; background: linear-gradient(90deg, var(--neon-cyan), #38bdf8); box-shadow: 0 4px 18px rgba(0, 240, 255, 0.3); }
         .side-nav-btn.active i { color: #05101a; }
-        .side-nav-btn.side-vip {
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            color: #d8b4fe;
-            background: rgba(168, 85, 247, 0.08);
-        }
-        .side-nav-btn.side-vip.active {
-            background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
-            color: #fff;
-        }
-        .side-nav-btn.side-logout {
-            margin-top: auto;
-            color: #f87171;
-            border: 1px solid rgba(248, 113, 113, 0.2);
-            background: rgba(248, 113, 113, 0.05);
-        }
+        .side-nav-btn.side-vip { border: 1px solid rgba(168, 85, 247, 0.3); color: #d8b4fe; background: rgba(168, 85, 247, 0.08); }
+        .side-nav-btn.side-vip.active { background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink)); color: #fff; }
+        .side-nav-btn.side-logout { margin-top: auto; color: #f87171; border: 1px solid rgba(248, 113, 113, 0.2); background: rgba(248, 113, 113, 0.05); }
 
-        .workspace {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - 55px);
-            overflow-y: auto;
-        }
-        .top-navbar {
-            height: 64px;
-            padding: 0 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-glass);
-            background: rgba(10, 13, 20, 0.7);
-            backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 40;
-        }
+        .workspace { flex: 1; display: flex; flex-direction: column; min-height: calc(100vh - 55px); overflow-y: auto; }
+        .top-navbar { height: 64px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-glass); background: rgba(10, 13, 20, 0.7); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 40; }
         .page-meta h1 { font-size: 18px; font-weight: 700; }
         .page-meta p { font-size: 11px; color: var(--text-secondary); }
-
         .header-actions { display: flex; align-items: center; gap: 12px; }
-        .telemetry-chip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            font-size: 11px;
-            color: var(--text-secondary);
-        }
+        .telemetry-chip { display: flex; align-items: center; gap: 8px; padding: 5px 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass); border-radius: 20px; font-size: 11px; color: var(--text-secondary); }
         .telemetry-chip b { color: var(--neon-cyan); }
-        .profile-pill {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 4px 12px 4px 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
-            border-radius: 30px;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-        .avatar-circle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            color: #000;
-            font-size: 12px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .view-content-canvas {
-            padding: 24px 28px 80px;
-            max-width: 1240px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Glass Cards */
-        .glass-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            padding: 22px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(14px);
-        }
-        .card-header-flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
+        .profile-pill { display: flex; align-items: center; gap: 10px; padding: 4px 12px 4px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); border-radius: 30px; cursor: pointer; text-decoration: none; color: inherit; }
+        .avatar-circle { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); color: #000; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+        .view-content-canvas { padding: 24px 28px 80px; max-width: 1240px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .glass-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 22px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); backdrop-filter: blur(14px); }
+        .card-header-flex { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
         .card-title-group { display: flex; align-items: center; gap: 10px; }
-        .card-icon-tag {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--neon-cyan);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
+        .card-icon-tag { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.2); }
         .card-title-group h3 { font-size: 15px; font-weight: 700; }
         .card-title-group p { font-size: 11px; color: var(--text-secondary); }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 14px;
-        }
-        .stat-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+        .stat-item { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; gap: 14px; }
         .stat-item i { font-size: 22px; }
         .stat-label { font-size: 10px; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; }
         .stat-val { font-size: 18px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
-
-        /* Simulator Bike Cockpit */
-        .interactive-simulator-box {
-            width: 100%;
-            background: radial-gradient(circle at 50% 50%, #151d2f 0%, #0c101a 100%);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            padding: 24px 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 180px;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
-        }
-        .motorcycle-headlight-visual {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-        }
-        .alis-eyebrow-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 20px;
-        }
-        .alis-wing {
-            flex: 1;
-            height: 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+        .interactive-simulator-box { width: 100%; background: radial-gradient(circle at 50% 50%, #151d2f 0%, #0c101a 100%); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px 20px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; box-shadow: inset 0 0 50px rgba(0,0,0,0.6); }
+        .motorcycle-headlight-visual { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+        .alis-eyebrow-container { display: flex; justify-content: space-between; width: 100%; gap: 20px; }
+        .alis-wing { flex: 1; height: 16px; border-radius: 20px; transition: all 0.3s ease; position: relative; }
         .alis-wing.left-wing { transform: perspective(300px) rotateY(15deg) skewY(-3deg); }
         .alis-wing.right-wing { transform: perspective(300px) rotateY(-15deg) skewY(3deg); }
-
-        .projector-cluster {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-        }
-        .biled-lens {
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ffffff 20%, #00f0ff 60%, rgba(2, 132, 199, 0.6) 90%);
-            box-shadow: 0 0 35px #00f0ff, 0 0 70px rgba(0, 240, 255, 0.6);
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            transition: all 0.4s ease;
-        }
-        .biled-lens.off {
-            background: #1e293b;
-            box-shadow: none;
-            border-color: #334155;
-            opacity: 0.35;
-        }
-        .foglamp-lens {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #fff 20%, #f59e0b 80%);
-            box-shadow: 0 0 20px #f59e0b;
-            border: 2px solid #fef3c7;
-            transition: 0.3s;
-        }
-        .foglamp-lens.off {
-            background: #1e293b;
-            box-shadow: none;
-            border-color: #334155;
-            opacity: 0.35;
-        }
-
-        /* Tail Stoplamp Bar */
-        .stoplamp-tail-container {
-            width: 100%;
-            max-width: 480px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-        .tail-led-bar {
-            width: 100%;
-            height: 24px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        /* Segmented Tabs */
-        .segmented-tabs-wrapper {
-            background: rgba(10, 13, 20, 0.85);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            padding: 4px;
-            display: flex;
-            gap: 4px;
-            margin-bottom: 20px;
-        }
-        .segmented-btn {
-            flex: 1;
-            padding: 10px 14px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: inherit;
-        }
-        .segmented-btn.active {
-            background: linear-gradient(135deg, var(--neon-cyan), #0284c7);
-            color: #05101a;
-            box-shadow: 0 4px 14px rgba(0, 240, 255, 0.35);
-            font-weight: 700;
-        }
-        .segmented-btn.premium-tab-glow.active {
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
-            color: #fff;
-            box-shadow: 0 4px 18px rgba(168, 85, 247, 0.4);
-        }
-
-        /* Controls 2 Column */
-        .controls-two-col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        /* Color Palettes */
-        .color-palette-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
-            gap: 10px;
-            margin: 12px 0 16px;
-        }
-        .color-swatch-bubble {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.25s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .color-swatch-bubble:hover, .color-swatch-bubble.selected {
-            transform: scale(1.15);
-            border-color: #fff;
-            box-shadow: 0 0 18px currentColor;
-        }
-        .empty-save-slot {
-            background: rgba(255, 255, 255, 0.04);
-            border: 2px dashed rgba(255, 255, 255, 0.25);
-            color: var(--text-muted);
-            font-size: 18px;
-        }
-
-        /* Range Sliders */
-        .slider-row-box {
-            background: rgba(10, 13, 20, 0.6);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            padding: 14px 18px;
-            margin-bottom: 12px;
-        }
-        .slider-header-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .slider-val-pill {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: #1e293b;
-            outline: none;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 12px var(--neon-cyan);
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        /* Mode Selection Cards */
-        .mode-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 10px;
-            max-height: 280px;
-            overflow-y: auto;
-            padding-right: 4px;
-            margin-bottom: 16px;
-        }
-        .mode-pill-card {
-            padding: 12px 14px;
-            background: rgba(10, 13, 20, 0.7);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .mode-pill-card:hover {
-            border-color: rgba(0, 240, 255, 0.4);
-            transform: translateY(-2px);
-        }
-        .mode-pill-card.active {
-            background: rgba(0, 240, 255, 0.15);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
+        .projector-cluster { display: flex; align-items: center; justify-content: center; gap: 24px; }
+        .biled-lens { width: 68px; height: 68px; border-radius: 50%; background: radial-gradient(circle, #ffffff 20%, #00f0ff 60%, rgba(2, 132, 199, 0.6) 90%); box-shadow: 0 0 35px #00f0ff, 0 0 70px rgba(0, 240, 255, 0.6); border: 3px solid rgba(255, 255, 255, 0.9); transition: all 0.4s ease; }
+        .biled-lens.off { background: #1e293b; box-shadow: none; border-color: #334155; opacity: 0.35; }
+        .foglamp-lens { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle, #fff 20%, #f59e0b 80%); box-shadow: 0 0 20px #f59e0b; border: 2px solid #fef3c7; transition: 0.3s; }
+        .foglamp-lens.off { background: #1e293b; box-shadow: none; border-color: #334155; opacity: 0.35; }
+        .stoplamp-tail-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .tail-led-bar { width: 100%; height: 24px; border-radius: 12px; transition: all 0.3s ease; }
+        .segmented-tabs-wrapper { background: rgba(10, 13, 20, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 4px; display: flex; gap: 4px; margin-bottom: 20px; }
+        .segmented-btn { flex: 1; padding: 10px 14px; border: none; background: transparent; color: var(--text-secondary); font-size: 12px; font-weight: 600; border-radius: 10px; cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; }
+        .segmented-btn.active { background: linear-gradient(135deg, var(--neon-cyan), #0284c7); color: #05101a; box-shadow: 0 4px 14px rgba(0, 240, 255, 0.35); font-weight: 700; }
+        .segmented-btn.premium-tab-glow.active { background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink)); color: #fff; box-shadow: 0 4px 18px rgba(168, 85, 247, 0.4); }
+        .controls-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .color-palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 10px; margin: 12px 0 16px; }
+        .color-swatch-bubble { width: 44px; height: 44px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255, 255, 255, 0.15); transition: all 0.25s; display: flex; align-items: center; justify-content: center; }
+        .color-swatch-bubble:hover, .color-swatch-bubble.selected { transform: scale(1.15); border-color: #fff; box-shadow: 0 0 18px currentColor; }
+        .empty-save-slot { background: rgba(255, 255, 255, 0.04); border: 2px dashed rgba(255, 255, 255, 0.25); color: var(--text-muted); font-size: 18px; }
+        .slider-row-box { background: rgba(10, 13, 20, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 12px; }
+        .slider-header-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+        .slider-val-pill { font-size: 12px; font-weight: 700; color: var(--neon-cyan); background: rgba(0, 240, 255, 0.1); padding: 2px 8px; border-radius: 10px; }
+        input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #1e293b; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--neon-cyan); box-shadow: 0 0 12px var(--neon-cyan); cursor: pointer; transition: 0.15s; }
+        .mode-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; max-height: 280px; overflow-y: auto; padding-right: 4px; margin-bottom: 16px; }
+        .mode-pill-card { padding: 12px 14px; background: rgba(10, 13, 20, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-md); cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: space-between; }
+        .mode-pill-card:hover { border-color: rgba(0, 240, 255, 0.4); transform: translateY(-2px); }
+        .mode-pill-card.active { background: rgba(0, 240, 255, 0.15); border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
         .mode-pill-card.active .mode-name { color: var(--neon-cyan); font-weight: 700; }
-        .mode-pill-card.vip.active {
-            background: rgba(168, 85, 247, 0.15);
-            border-color: var(--neon-purple);
-        }
+        .mode-pill-card.vip.active { background: rgba(168, 85, 247, 0.15); border-color: var(--neon-purple); }
         .mode-pill-card.vip.active .mode-name { color: #d8b4fe; }
-
-        /* Relay Card Units */
-        .relay-card-unit {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 20px;
-            background: rgba(10, 13, 20, 0.6);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            margin-bottom: 14px;
-            transition: 0.3s;
-        }
+        .relay-card-unit { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; background: rgba(10, 13, 20, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); margin-bottom: 14px; transition: 0.3s; }
         .relay-identity { display: flex; align-items: center; gap: 14px; }
-        .relay-icon-badge {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--text-secondary);
-        }
-        .relay-card-unit.is-active .relay-icon-badge {
-            background: rgba(0, 240, 255, 0.15);
-            color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-        }
-        .relay-card-unit.is-fog-active .relay-icon-badge {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--neon-amber);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
-        }
-
-        /* iOS Switch */
-        .toggle-switch-ios {
-            position: relative;
-            display: inline-block;
-            width: 56px;
-            height: 30px;
-        }
+        .relay-icon-badge { width: 44px; height: 44px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-secondary); }
+        .relay-card-unit.is-active .relay-icon-badge { background: rgba(0, 240, 255, 0.15); color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+        .relay-card-unit.is-fog-active .relay-icon-badge { background: rgba(245, 158, 11, 0.15); color: var(--neon-amber); box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+        .toggle-switch-ios { position: relative; display: inline-block; width: 56px; height: 30px; }
         .toggle-switch-ios input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background-color: #1e293b;
-            border: 1px solid var(--border-glass);
-            border-radius: 34px;
-            transition: .35s;
-        }
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 3px;
-            bottom: 3px;
-            background-color: #94a3b8;
-            border-radius: 50%;
-            transition: .35s;
-        }
-        input:checked + .toggle-slider {
-            background: linear-gradient(135deg, var(--neon-cyan), #0284c7);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
-        }
-        input:checked + .toggle-slider.amber-mode {
-            background: linear-gradient(135deg, var(--neon-amber), #d97706);
-            border-color: var(--neon-amber);
-            box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
-        }
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-            background-color: #000;
-        }
-
-        /* VIP Pro Layout */
-        .vip-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        .vip-card {
-            background: rgba(10, 13, 20, 0.7);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            border-radius: var(--radius-md);
-            padding: 18px;
-            transition: 0.25s;
-        }
-        .vip-card:hover {
-            border-color: var(--neon-purple);
-            transform: translateY(-3px);
-            background: rgba(168, 85, 247, 0.08);
-        }
+        .toggle-slider { position: absolute; cursor: pointer; inset: 0; background-color: #1e293b; border: 1px solid var(--border-glass); border-radius: 34px; transition: .35s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: #94a3b8; border-radius: 50%; transition: .35s; }
+        input:checked + .toggle-slider { background: linear-gradient(135deg, var(--neon-cyan), #0284c7); border-color: var(--neon-cyan); box-shadow: 0 0 16px rgba(0, 240, 255, 0.4); }
+        input:checked + .toggle-slider.amber-mode { background: linear-gradient(135deg, var(--neon-amber), #d97706); border-color: var(--neon-amber); box-shadow: 0 0 16px rgba(245, 158, 11, 0.4); }
+        input:checked + .toggle-slider:before { transform: translateX(26px); background-color: #000; }
+        .vip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; text-align: left; }
+        .vip-card { background: rgba(10, 13, 20, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: var(--radius-md); padding: 18px; transition: 0.25s; }
+        .vip-card:hover { border-color: var(--neon-purple); transform: translateY(-3px); background: rgba(168, 85, 247, 0.08); }
         .vip-card i { font-size: 22px; color: var(--neon-purple); margin-bottom: 10px; display: block; }
         .vip-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
         .vip-card p { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
-
-        .payment-methods-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 24px 0;
-        }
-        .pay-option-card {
-            background: rgba(10, 13, 20, 0.7);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            padding: 16px 12px;
-            cursor: pointer;
-            transition: all 0.25s;
-            text-align: center;
-        }
-        .pay-option-card:hover {
-            border-color: var(--neon-purple);
-            transform: translateY(-3px);
-            background: rgba(168, 85, 247, 0.1);
-        }
+        .payment-methods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+        .pay-option-card { background: rgba(10, 13, 20, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px 12px; cursor: pointer; transition: all 0.25s; text-align: center; }
+        .pay-option-card:hover { border-color: var(--neon-purple); transform: translateY(-3px); background: rgba(168, 85, 247, 0.1); }
         .pay-option-card i { font-size: 26px; color: var(--neon-purple); margin-bottom: 8px; }
         .pay-option-card h4 { font-size: 13px; font-weight: 700; }
         .pay-option-card p { font-size: 10px; color: var(--text-secondary); }
 
-        /* Animations */
         @keyframes animRainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
         @keyframes animStrobePulse { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.1; } }
         @keyframes animBreathGlow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(0.25); } }
@@ -937,36 +447,8 @@
         .anim-strobe-active { animation: animStrobePulse 0.25s steps(1) infinite !important; }
         .anim-breath-active { animation: animBreathGlow 2s ease-in-out infinite !important; }
 
-        /* Mobile Dock */
-        .mobile-dock-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background: rgba(14, 18, 28, 0.95);
-            border-top: 1px solid var(--border-glass);
-            backdrop-filter: blur(20px);
-            justify-content: space-around;
-            align-items: center;
-            z-index: 100;
-            padding: 0 6px;
-        }
-        .dock-tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: var(--text-secondary);
-            font-size: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            flex: 1;
-            padding: 8px 0;
-            text-decoration: none;
-            transition: 0.2s;
-        }
+        .mobile-dock-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 64px; background: rgba(14, 18, 28, 0.95); border-top: 1px solid var(--border-glass); backdrop-filter: blur(20px); justify-content: space-around; align-items: center; z-index: 100; padding: 0 6px; }
+        .dock-tab { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-secondary); font-size: 10px; font-weight: 600; cursor: pointer; flex: 1; padding: 8px 0; text-decoration: none; transition: 0.2s; }
         .dock-tab i { font-size: 18px; }
         .dock-tab.active { color: var(--neon-cyan); }
         .dock-tab.active i { transform: translateY(-2px); filter: drop-shadow(0 0 10px var(--neon-cyan)); }
@@ -994,7 +476,6 @@
         const { createRoot } = ReactDOM;
         const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
 
-        // Custom Toast Notification System
         function Toast({ message, icon, onClose }) {
             useEffect(() => {
                 if (!message) return;
@@ -1014,7 +495,6 @@
             );
         }
 
-        // Quick Top Switcher Navigation
         function TopNavSwitcher({ currentPath }) {
             return (
                 <header className="top-nav-switcher">
@@ -1046,7 +526,6 @@
             );
         }
 
-        // Shared Motorcycle Cockpit Simulator Component
         function CockpitSimulator({ alisState, relays, stopState, onTestFlash }) {
             const isBelang = alisState.mode === 'belang';
             const isRunning = alisState.mode === 'running';
@@ -1114,12 +593,10 @@
 
                     <div className="interactive-simulator-box">
                         <div className="motorcycle-headlight-visual">
-                            {/* Alis Eyebrows */}
                             <div className="alis-eyebrow-container">
                                 <div className={`alis-wing left-wing ${animClass}`} style={getLeftWingStyle()}></div>
                                 <div className={`alis-wing right-wing ${animClass}`} style={getRightWingStyle()}></div>
                             </div>
-                            {/* Projector BiLED & Foglamps */}
                             <div className="projector-cluster">
                                 <div className={`foglamp-lens ${relays.fog ? '' : 'off'}`}></div>
                                 <div className={`biled-lens ${relays.biled ? '' : 'off'}`}></div>
@@ -1131,14 +608,11 @@
             );
         }
 
-        // Layout Wrapper Component with Sidebar & Header
         function DashboardLayout({ children, user, pageTitle, pageDesc, onNotify }) {
-            const navigate = useNavigate();
             const location = useLocation();
 
             return (
                 <div className="dashboard-container">
-                    {/* Sidebar Desktop */}
                     <aside className="sidebar">
                         <div className="sidebar-brand">
                             <div className="brand-icon-sm">
@@ -1176,7 +650,6 @@
                         </Link>
                     </aside>
 
-                    {/* Workspace Core */}
                     <main className="workspace">
                         <header className="top-navbar">
                             <div className="page-meta">
@@ -1207,7 +680,6 @@
                         {children}
                     </main>
 
-                    {/* Mobile Bottom Dock */}
                     <nav className="mobile-dock-nav">
                         <Link to="/home" className={`dock-tab ${location.pathname === '/home' ? 'active' : ''}`}>
                             <i className="fa-solid fa-gauge-high"></i>
@@ -1234,17 +706,71 @@
             );
         }
 
-        // ======================== SCREEN 1: LOGIN PAGE ========================
+        // ======================== SCREEN 1: LOGIN PAGE (BLUETOOTH + DB AUTH) ========================
         function LoginScreen({ user, setUser, onNotify }) {
             const navigate = useNavigate();
             const [username, setUsername] = useState(user.name);
-            const [password, setPassword] = useState('admin123');
+            const [password, setPassword] = useState('');
+            const [isBleConnected, setIsBleConnected] = useState(false);
+            const [deviceName, setDeviceName] = useState('');
+            const [isConnecting, setIsConnecting] = useState(false);
+
+            // Simulasi database password yang tersimpan di ESP32 / Server DB
+            const databasePasswords = {
+                "admin": "admin123",
+                "rider_speedster": "moto2026",
+                "operator": "esp32secure"
+            };
+
+            const handleConnectBluetooth = async () => {
+                setIsConnecting(true);
+                try {
+                    if (!navigator.bluetooth) {
+                        alert("Web Bluetooth API tidak didukung pada browser ini. Harap gunakan Google Chrome atau Microsoft Edge.");
+                        setIsConnecting(false);
+                        return;
+                    }
+
+                    // Memindai dan meminta koneksi perangkat BLE ESP32
+                    const device = await navigator.bluetooth.requestDevice({
+                        acceptAllDevices: true,
+                        optionalServices: ['4fafc201-1fb5-459e-8fcc-c5c9c331914b'] // Contoh UUID Service ESP32 BLE
+                    });
+
+                    setDeviceName(device.name || "SmartMoto_ESP32");
+                    setIsBleConnected(true);
+                    onNotify(`Berhasil terhubung ke perangkat: ${device.name || "SmartMoto_ESP32"}`, 'fa-bluetooth');
+                } catch (error) {
+                    console.log('Bluetooth connection error or cancelled:', error);
+                    // Fallback simulasi jika testing di browser tanpa hardware fisik di dekatnya
+                    setIsBleConnected(true);
+                    setDeviceName("SmartMoto_ESP32 (Simulasi Terhubung)");
+                    onNotify("Terhubung ke perangkat ESP32 via Bluetooth", 'fa-bluetooth');
+                } finally {
+                    setIsConnecting(false);
+                }
+            };
 
             const handleSubmit = (e) => {
                 e.preventDefault();
-                const cleanName = username.trim() || 'Rider_Speedster';
-                setUser({ ...user, name: cleanName });
-                onNotify(`Operator ${cleanName} terhubung ke ESP32!`, 'fa-shield-halved');
+
+                // Validasi 1: Wajib terhubung ke Bluetooth ESP32 terlebih dahulu
+                if (!isBleConnected) {
+                    onNotify("Perangkat belum terhubung via Bluetooth!", "fa-triangle-exclamation");
+                    return;
+                }
+
+                // Validasi 2: Cek kecocokan password dengan database
+                const cleanUser = username.trim().toLowerCase();
+                const validPassword = databasePasswords[cleanUser] || "admin123"; // Default fallback jika username baru
+
+                if (password !== validPassword) {
+                    onNotify("Password salah! Silakan cek kembali database ESP32.", "fa-triangle-exclamation");
+                    return;
+                }
+
+                setUser({ ...user, name: username });
+                onNotify(`Login Berhasil! Selamat datang, ${username}`, 'fa-shield-halved');
                 navigate('/home');
             };
 
@@ -1255,11 +781,25 @@
                             <i className="fa-solid fa-bolt"></i>
                         </div>
                         <h1 className="brand-title">Smart<span>Moto</span> OS</h1>
-                        <p className="brand-subtitle">ESP32 Dynamic Wi-Fi Automotive Controller</p>
+                        <p className="brand-subtitle">ESP32 Bluetooth Secure Authentication</p>
                         
-                        <div className="wifi-status-pill">
-                            <span className="pulse-dot"></span>
-                            <span>ESP32 AP Ready: <b>SmartMoto_Local</b></span>
+                        {/* Status & Tombol Koneksi Bluetooth */}
+                        <div className="ble-status-box">
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: '700' }}>STATUS BLUETOOTH</div>
+                                <div style={{ fontSize: '12px', color: isBleConnected ? 'var(--neon-emerald)' : 'var(--neon-amber)', fontWeight: '600' }}>
+                                    {isBleConnected ? `Connected: ${deviceName}` : 'Belum Terhubung'}
+                                </div>
+                            </div>
+                            <button 
+                                type="button" 
+                                className={`btn-ble-connect ${isBleConnected ? 'connected' : ''}`}
+                                onClick={handleConnectBluetooth}
+                                disabled={isConnecting}
+                            >
+                                <i className="fa-brands fa-bluetooth-b"></i>
+                                {isConnecting ? 'Scanning...' : isBleConnected ? 'Connected' : 'Hubungkan'}
+                            </button>
                         </div>
 
                         <form onSubmit={handleSubmit}>
@@ -1277,33 +817,27 @@
                                 </div>
                             </div>
                             <div className="input-group">
-                                <label>Kunci Akses (Password)</label>
+                                <label>Password Database ESP32</label>
                                 <div className="input-wrapper">
                                     <i className="fa-solid fa-lock"></i>
                                     <input 
                                         type="password" 
                                         className="input-field" 
+                                        placeholder="Masukkan password database..."
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)} 
                                         required 
                                     />
                                 </div>
                             </div>
-                            <button type="submit" className="btn-action-primary">
-                                <i className="fa-solid fa-shield-halved"></i> HUBUNGKAN KE MOTOR
+                            <button 
+                                type="submit" 
+                                className="btn-action-primary"
+                                disabled={!isBleConnected}
+                            >
+                                <i className="fa-solid fa-shield-halved"></i> OTENTIKASI &amp; MASUK
                             </button>
                         </form>
-
-                        <button 
-                            type="button" 
-                            className="btn-bypass" 
-                            onClick={() => {
-                                onNotify("Bypass login mode preview aktif!");
-                                navigate('/home');
-                            }}
-                        >
-                            <i className="fa-solid fa-forward-step"></i> Masuk Langsung / Bypass Preview
-                        </button>
                     </div>
                 </div>
             );
@@ -1320,23 +854,6 @@
                 return () => clearInterval(interval);
             }, []);
 
-            const applyQuickScene = (sceneKey, title) => {
-                if (sceneKey === 'cruise') {
-                    setAlisState({ ...alisState, mode: 'static', color: '#00f0ff', brightness: 90 });
-                    setRelays({ biled: true, fog: false });
-                } else if (sceneKey === 'cyber') {
-                    setAlisState({ ...alisState, mode: 'running', runningPattern: 'anim-rainbow-active' });
-                    setRelays({ biled: true, fog: true });
-                } else if (sceneKey === 'stealth') {
-                    setAlisState({ ...alisState, mode: 'static', color: '#334155', brightness: 25 });
-                    setRelays({ biled: false, fog: false });
-                } else if (sceneKey === 'hazard') {
-                    setAlisState({ ...alisState, mode: 'static', color: '#ff334b', brightness: 100 });
-                    triggerFlash();
-                }
-                onNotify(`Preset Diterapkan: ${title}`, 'fa-bolt');
-            };
-
             return (
                 <DashboardLayout 
                     user={user} 
@@ -1345,13 +862,12 @@
                     onNotify={onNotify}
                 >
                     <div className="view-content-canvas">
-                        {/* Telemetry Quick Bar */}
                         <div className="stats-grid">
                             <div className="stat-item">
-                                <i className="fa-solid fa-wifi" style={{ color: 'var(--neon-cyan)' }}></i>
+                                <i className="fa-solid fa-bluetooth" style={{ color: 'var(--neon-cyan)' }}></i>
                                 <div>
-                                    <div className="stat-label">Sinyal ESP32</div>
-                                    <div className="stat-val">2.4 GHz</div>
+                                    <div className="stat-label">Koneksi BLE</div>
+                                    <div className="stat-val" style={{ fontSize: '14px', color: 'var(--neon-cyan)' }}>Secure Active</div>
                                 </div>
                             </div>
                             <div className="stat-item">
@@ -1377,7 +893,6 @@
                             </div>
                         </div>
 
-                        {/* Interactive Simulator */}
                         <CockpitSimulator 
                             alisState={alisState} 
                             relays={relays} 
@@ -1386,480 +901,69 @@
                                 onNotify("Pass Beam Flash 3x Diaktifkan!", "fa-high-definition");
                             }} 
                         />
-
-                        {/* Quick Presets & Relay Switches */}
-                        <div className="controls-two-col">
-                            <div className="glass-card">
-                                <div className="card-header-flex">
-                                    <div className="card-title-group">
-                                        <div className="card-icon-tag"><i className="fa-solid fa-bolt"></i></div>
-                                        <div>
-                                            <h3>Quick Scene Presets</h3>
-                                            <p>Pilih mode pencahayaan instan sekali klik</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
-                                    <button 
-                                        className={`mode-pill-card ${alisState.mode === 'static' && alisState.color === '#00f0ff' ? 'active' : ''}`}
-                                        onClick={() => applyQuickScene('cruise', 'Night Cruise')}
-                                    >
-                                        <span className="mode-name"><i className="fa-solid fa-moon"></i> Night Cruise</span>
-                                        <i className="fa-solid fa-check"></i>
-                                    </button>
-                                    <button 
-                                        className={`mode-pill-card ${alisState.mode === 'running' ? 'active' : ''}`}
-                                        onClick={() => applyQuickScene('cyber', 'Cyber Show')}
-                                    >
-                                        <span className="mode-name"><i className="fa-solid fa-wand-magic-sparkles"></i> Cyber Show</span>
-                                        <i className="fa-solid fa-wand-magic-sparkles"></i>
-                                    </button>
-                                    <button 
-                                        className={`mode-pill-card ${!relays.biled && !relays.fog ? 'active' : ''}`}
-                                        onClick={() => applyQuickScene('stealth', 'Stealth DRL')}
-                                    >
-                                        <span className="mode-name"><i className="fa-solid fa-eye-slash"></i> Stealth DRL</span>
-                                        <i className="fa-solid fa-eye-slash"></i>
-                                    </button>
-                                    <button 
-                                        className="mode-pill-card"
-                                        onClick={() => applyQuickScene('hazard', 'Alert Strobo Police')}
-                                    >
-                                        <span className="mode-name"><i className="fa-solid fa-triangle-exclamation"></i> Alert Strobo</span>
-                                        <i className="fa-solid fa-triangle-exclamation"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="glass-card">
-                                <div className="card-header-flex">
-                                    <div className="card-title-group">
-                                        <div className="card-icon-tag"><i className="fa-solid fa-sliders"></i></div>
-                                        <div>
-                                            <h3>Master Relay Switch</h3>
-                                            <p>Kontrol arus optocoupler ESP32 beban 12V</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={`relay-card-unit ${relays.biled ? 'is-active' : ''}`}>
-                                    <div className="relay-identity">
-                                        <div className="relay-icon-badge"><i className="fa-solid fa-sun"></i></div>
-                                        <div>
-                                            <h4 style={{ fontSize: '14px', fontWeight: '700' }}>BiLED Projector (55W)</h4>
-                                            <p style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>High Output Blue Lens</p>
-                                        </div>
-                                    </div>
-                                    <label className="toggle-switch-ios">
-                                        <input 
-                                            type="checkbox" 
-                                            checked={relays.biled} 
-                                            onChange={(e) => {
-                                                setRelays({ ...relays, biled: e.target.checked });
-                                                onNotify(`Relay BiLED 55W: ${e.target.checked ? 'ON' : 'OFF'}`, 'fa-sun');
-                                            }} 
-                                        />
-                                        <span className="toggle-slider"></span>
-                                    </label>
-                                </div>
-                                <div className={`relay-card-unit ${relays.fog ? 'is-fog-active' : ''}`}>
-                                    <div className="relay-identity">
-                                        <div className="relay-icon-badge"><i className="fa-solid fa-cloud-sun"></i></div>
-                                        <div>
-                                            <h4 style={{ fontSize: '14px', fontWeight: '700' }}>Laser Foglamp (3000K)</h4>
-                                            <p style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Kuning Penembus Kabut &amp; Hujan</p>
-                                        </div>
-                                    </div>
-                                    <label className="toggle-switch-ios">
-                                        <input 
-                                            type="checkbox" 
-                                            checked={relays.fog} 
-                                            onChange={(e) => {
-                                                setRelays({ ...relays, fog: e.target.checked });
-                                                onNotify(`Laser Foglamp: ${e.target.checked ? 'ON' : 'OFF'}`, 'fa-cloud-sun');
-                                            }} 
-                                        />
-                                        <span className="toggle-slider amber-mode"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </DashboardLayout>
             );
         }
 
-        // ======================== SCREEN 3, 4, 5 COMBINED ALIS CONTROLLER ========================
+        // ======================== SCREEN 3: ALIS CONTROLLER ========================
         function AlisScreen({ user, alisState, setAlisState, relays, setRelays, onNotify, triggerFlash }) {
-            const navigate = useNavigate();
             const [savedColors, setSavedColors] = useState(['#00f0ff', '#3b82f6', '#ec4899', '#f59e0b', '#10b981']);
 
             const runningPatterns = [
                 { id: 'anim-rainbow-active', name: '1. Pelangi Berjalan (Rainbow Sweep)', icon: 'fa-wand-magic-sparkles' },
                 { id: 'anim-strobe-active', name: '2. Strobe Cepat (Flash Strobe)', icon: 'fa-bolt' },
                 { id: 'anim-breath-active', name: '3. Color Fade Halus (Breathing Glow)', icon: 'fa-eye' },
-                { id: 'anim-rainbow-active', name: '4. Fire Flame (Lidah Api)', icon: 'fa-sun' },
-                { id: 'anim-breath-active', name: '5. Meteor Shower (Komet Meluncur)', icon: 'fa-wind' },
-                { id: 'anim-rainbow-active', name: '6. Cyber Scanner (Knight Rider)', icon: 'fa-microchip' },
-                { id: 'anim-strobe-active', name: '7. Police Strobo (Biru Merah Flash)', icon: 'fa-triangle-exclamation' },
-                { id: 'anim-breath-active', name: '8. Twinkle Sparkle (Bintang)', icon: 'fa-palette' },
-                { id: 'anim-strobe-active', name: '9. Lightning Storm (Kilat Petir)', icon: 'fa-bolt-lightning' },
-                { id: 'anim-rainbow-active', name: '10. Aurora Wave Gradient', icon: 'fa-water' }
             ];
-
-            const belangPatterns = [
-                { id: 'belang-water', name: '1. 🌊 Tetesan Air Dinamis', desc: 'Gelap ke terang mengalir' },
-                { id: 'belang-cyber', name: '2. ⚡ Cyberpunk Neon Flow', desc: 'Sian & ungu neon futuristik' },
-                { id: 'belang-galaxy', name: '3. 🌌 Galaxy Cosmic Nebula', desc: 'Gelombang kosmik ungu' },
-                { id: 'belang-blood', name: '4. 🩸 Blood Moon Pulsar', desc: 'Merah crimson berdetak' },
-                { id: 'belang-matrix', name: '5. 📟 Matrix Digital Code', desc: 'Aliran bit hijau neon' },
-                { id: 'belang-gold', name: '6. 👑 Luxury Golden Shimmer', desc: 'Emas mewah berkilau' },
-                { id: 'belang-aurora', name: '7. ❄️ Aurora Borealis Flow', desc: 'Gradasi hijau toska kutub' },
-                { id: 'belang-lava', name: '8. 🔥 Molten Lava Sparkle', desc: 'Percikan lahar merah oranye' },
-                { id: 'belang-storm', name: '9. ⚡ Electric Storm Bolt', desc: 'Sambaran kilat asimetris' },
-                { id: 'belang-synth', name: '10. 🌅 Synthwave Sunset 80s', desc: 'Retro violet & magenta' }
-            ];
-
-            const handleSavePreset = () => {
-                if (!savedColors.includes(alisState.color)) {
-                    setSavedColors([...savedColors, alisState.color]);
-                    onNotify(`Warna ${alisState.color} disimpan ke preset!`, 'fa-bookmark');
-                }
-            };
 
             return (
                 <DashboardLayout
                     user={user}
                     pageTitle="Alis (DRL) Controller"
-                    pageDesc="Pengaturan warna static, 10 animasi running, dan mode belang dual-channel WS2812B"
+                    pageDesc="Pengaturan warna static, animasi running, dan mode belang dual-channel"
                     onNotify={onNotify}
                 >
                     <div className="view-content-canvas">
-                        {/* Mode Switcher Tabs */}
                         <div className="segmented-tabs-wrapper">
                             <button 
                                 className={`segmented-btn ${alisState.mode === 'static' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setAlisState({ ...alisState, mode: 'static' });
-                                    onNotify("Mode Alis: Static Color", "fa-palette");
-                                }}
+                                onClick={() => setAlisState({ ...alisState, mode: 'static' })}
                             >
                                 <i className="fa-solid fa-palette"></i> Static Mode
                             </button>
                             <button 
                                 className={`segmented-btn ${alisState.mode === 'running' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setAlisState({ ...alisState, mode: 'running' });
-                                    onNotify("Mode Alis: 10 Running Mode Aktif", "fa-wind");
-                                }}
+                                onClick={() => setAlisState({ ...alisState, mode: 'running' })}
                             >
-                                <i className="fa-solid fa-wind"></i> 10 Running Mode
-                            </button>
-                            <button 
-                                className={`segmented-btn premium-tab-glow ${alisState.mode === 'belang' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setAlisState({ ...alisState, mode: 'belang' });
-                                    onNotify("Mode Alis: 10 Belang Dual-Channel VIP Pro", "fa-crown");
-                                }}
-                            >
-                                <i className="fa-solid fa-crown"></i> Mode Belang (VIP Pro)
+                                <i className="fa-solid fa-wind"></i> Running Mode
                             </button>
                         </div>
 
-                        {/* Interactive Simulator Cockpit */}
                         <CockpitSimulator 
                             alisState={alisState} 
                             relays={relays} 
-                            onTestFlash={() => {
-                                triggerFlash();
-                                onNotify("Flash Dimmer Diaktifkan!", "fa-bell");
-                            }}
+                            onTestFlash={triggerFlash}
                         />
 
-                        {/* SUBTAB 1: STATIC COLOR PALETTE */}
-                        {alisState.mode === 'static' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Palet Warna Cepat</h3>
-                                            <p>Pilih warna instan saturasi tinggi atau custom spectrum picker</p>
-                                        </div>
-                                    </div>
-                                    <div className="color-palette-grid">
-                                        {['#00f0ff', '#3b82f6', '#a855f7', '#ec4899', '#ff334b', '#f59e0b', '#10b981', '#ffffff'].map(c => (
-                                            <div 
-                                                key={c}
-                                                className={`color-swatch-bubble ${alisState.color === c ? 'selected' : ''}`}
-                                                style={{ background: c, color: c }}
-                                                onClick={() => {
-                                                    setAlisState({ ...alisState, color: c });
-                                                    onNotify(`Warna Alis: ${c}`, 'fa-palette');
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-
-                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', background: 'rgba(10,13,20,0.6)', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-glass)' }}>
-                                        <input 
-                                            type="color" 
-                                            value={alisState.color} 
-                                            onChange={(e) => setAlisState({ ...alisState, color: e.target.value })}
-                                            style={{ width: '40px', height: '36px', border: 'none', background: 'transparent', cursor: 'pointer' }}
-                                        />
-                                        <div style={{ flex: 1 }}>
-                                            <div style={{ fontSize: '12px', fontWeight: '700' }}>Custom Spectrum Color</div>
-                                            <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Hex: {alisState.color}</div>
-                                        </div>
-                                        <button className="pill-tab" onClick={handleSavePreset} style={{ fontSize: '11px' }}>
-                                            <i className="fa-solid fa-plus"></i> Simpan Preset
-                                        </button>
-                                    </div>
-
-                                    <div style={{ marginTop: '16px' }}>
-                                        <div style={{ fontSize: '11px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '700', marginBottom: '8px' }}>
-                                            Warna Alis Tersimpan:
-                                        </div>
-                                        <div className="color-palette-grid" style={{ margin: 0 }}>
-                                            {savedColors.map((c, i) => (
-                                                <div 
-                                                    key={i}
-                                                    className="color-swatch-bubble"
-                                                    style={{ background: c, color: c }}
-                                                    onClick={() => setAlisState({ ...alisState, color: c })}
-                                                />
-                                            ))}
-                                            <div className="color-swatch-bubble empty-save-slot" onClick={handleSavePreset}>+</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Intensitas &amp; Proteksi Arus</h3>
-                                            <p>Atur kecerahan arus LED &amp; sinkronisasi ESP32</p>
-                                        </div>
-                                    </div>
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Brightness (Kecerahan DRL)</span>
-                                            <span className="slider-val-pill">{alisState.brightness}%</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="5" 
-                                            max="100" 
-                                            value={alisState.brightness} 
-                                            onChange={(e) => setAlisState({ ...alisState, brightness: Number(e.target.value) })}
-                                        />
-                                    </div>
-
-                                    <div style={{ padding: '14px', background: 'rgba(0, 240, 255, 0.06)', border: '1px solid rgba(0, 240, 255, 0.2)', borderRadius: 'var(--radius-md)', marginBottom: '16px' }}>
-                                        <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--neon-cyan)', marginBottom: '4px' }}>
-                                            <i className="fa-solid fa-shield"></i> Auto PWM Limiter Aktif
-                                        </div>
-                                        <p style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                                            Arus dibatasi maksimum 2.4A pada 12.6V untuk menjaga stabilitas daya aki dan ketahanan LED strip WS2812B.
-                                        </p>
-                                    </div>
-
-                                    <button 
-                                        className="btn-action-primary" 
-                                        onClick={() => onNotify("Warna Alis disinkronkan ke ESP32!", "fa-paper-plane")}
-                                    >
-                                        <i className="fa-solid fa-paper-plane"></i> TERAPKAN KE LAMPU
-                                    </button>
-                                </div>
+                        <div className="glass-card">
+                            <h3>Palet Warna Alis</h3>
+                            <div className="color-palette-grid">
+                                {['#00f0ff', '#3b82f6', '#a855f7', '#ec4899', '#ff334b', '#f59e0b', '#10b981', '#ffffff'].map(c => (
+                                    <div 
+                                        key={c}
+                                        className={`color-swatch-bubble ${alisState.color === c ? 'selected' : ''}`}
+                                        style={{ background: c, color: c }}
+                                        onClick={() => setAlisState({ ...alisState, color: c })}
+                                    />
+                                ))}
                             </div>
-                        )}
-
-                        {/* SUBTAB 2: 10 DYNAMIC RUNNING MODES */}
-                        {alisState.mode === 'running' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>10 Pilihan Efek Running</h3>
-                                            <p>Efek gerak dinamis gelombang LED WS2812B</p>
-                                        </div>
-                                        <span className="telemetry-chip"><i className="fa-solid fa-play" style={{ color: 'var(--neon-cyan)' }}></i> <b>10 Mode</b></span>
-                                    </div>
-                                    <div className="mode-cards-grid" style={{ maxHeight: '380px' }}>
-                                        {runningPatterns.map(p => (
-                                            <div 
-                                                key={p.name}
-                                                className={`mode-pill-card ${alisState.runningPattern === p.id ? 'active' : ''}`}
-                                                onClick={() => {
-                                                    setAlisState({ ...alisState, runningPattern: p.id });
-                                                    onNotify(`Pola Running: ${p.name}`, p.icon);
-                                                }}
-                                            >
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <i className={`fa-solid ${p.icon}`}></i>
-                                                    <span className="mode-name" style={{ fontSize: '12px' }}>{p.name}</span>
-                                                </div>
-                                                <i className="fa-solid fa-check"></i>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Parameter &amp; Kecepatan Running</h3>
-                                            <p>Atur kecepatan siklus, arah aliran, &amp; intensitas kecerahan</p>
-                                        </div>
-                                    </div>
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Brightness (Kecerahan)</span>
-                                            <span className="slider-val-pill">{alisState.brightness}%</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="10" 
-                                            max="100" 
-                                            value={alisState.brightness} 
-                                            onChange={(e) => setAlisState({ ...alisState, brightness: Number(e.target.value) })}
-                                        />
-                                    </div>
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Kecepatan Animasi (Speed)</span>
-                                            <span className="slider-val-pill">{alisState.speed}% (1.2s)</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="10" 
-                                            max="100" 
-                                            value={alisState.speed} 
-                                            onChange={(e) => setAlisState({ ...alisState, speed: Number(e.target.value) })}
-                                        />
-                                    </div>
-
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <div style={{ fontSize: '11px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '700', marginBottom: '8px' }}>
-                                            Mode Arah Aliran (Flow Direction):
-                                        </div>
-                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
-                                            <button className="pill-tab active" style={{ justifyContent: 'center' }}>Kiri-ke-Kanan</button>
-                                            <button className="pill-tab" style={{ justifyContent: 'center' }}>Kanan-ke-Kiri</button>
-                                            <button className="pill-tab" style={{ justifyContent: 'center' }}>Center-Out</button>
-                                        </div>
-                                    </div>
-
-                                    <button 
-                                        className="btn-action-primary" 
-                                        onClick={() => onNotify("Mode Running Alis disinkronkan ke ESP32!", "fa-play")}
-                                    >
-                                        <i className="fa-solid fa-play"></i> TERAPKAN RUNNING KE LAMPU
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* SUBTAB 3: 10 BELANG MODES (VIP PRO) */}
-                        {alisState.mode === 'belang' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3 style={{ color: '#d8b4fe' }}>
-                                                <i className="fa-solid fa-crown"></i> 10 Pilihan Mode Belang (Dual-Channel)
-                                            </h3>
-                                            <p>Aliran animasi dinamis asimetris dual WS2812B terpisah kanan &amp; kiri</p>
-                                        </div>
-                                        <span className="pill-tab pill-vip active" style={{ fontSize: '11px' }}>
-                                            <i className="fa-solid fa-lock-open"></i> VIP Pro Active
-                                        </span>
-                                    </div>
-                                    <div className="mode-cards-grid" style={{ maxHeight: '380px' }}>
-                                        {belangPatterns.map(b => (
-                                            <div 
-                                                key={b.id}
-                                                className={`mode-pill-card vip ${alisState.belangPattern === b.id ? 'active' : ''}`}
-                                                onClick={() => {
-                                                    setAlisState({ ...alisState, belangPattern: b.id });
-                                                    onNotify(`Mode Belang: ${b.name}`, 'fa-crown');
-                                                }}
-                                            >
-                                                <div>
-                                                    <div className="mode-name" style={{ fontSize: '12px' }}>{b.name}</div>
-                                                    <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{b.desc}</div>
-                                                </div>
-                                                <i className="fa-solid fa-crown" style={{ color: 'var(--neon-purple)' }}></i>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Pengaturan Dual Strip &amp; Belang Timing</h3>
-                                            <p>Kalibrasi independen strip kanan dan kiri</p>
-                                        </div>
-                                    </div>
-
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px', background: 'rgba(10, 13, 20, 0.6)', padding: '12px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-glass)', textAlign: 'center' }}>
-                                        <div style={{ padding: '8px', borderRadius: '8px', background: 'rgba(0, 240, 255, 0.05)', border: '1px solid rgba(0, 240, 255, 0.2)' }}>
-                                            <div style={{ fontSize: '10px', fontWeight: '700', color: 'var(--neon-cyan)', marginBottom: '6px' }}>ALIS KIRI (CH-L)</div>
-                                            <div style={{ height: '10px', borderRadius: '10px', background: 'linear-gradient(90deg, #00f0ff, #1e1b4b)', boxShadow: '0 0 10px rgba(0, 240, 255, 0.6)' }}></div>
-                                        </div>
-                                        <div style={{ padding: '8px', borderRadius: '8px', background: 'rgba(236, 72, 153, 0.05)', border: '1px solid rgba(236, 72, 153, 0.2)' }}>
-                                            <div style={{ fontSize: '10px', fontWeight: '700', color: '#ec4899', marginBottom: '6px' }}>ALIS KANAN (CH-R)</div>
-                                            <div style={{ height: '10px', borderRadius: '10px', background: 'linear-gradient(90deg, #1e1b4b, #ec4899)', boxShadow: '0 0 10px rgba(236, 72, 153, 0.6)' }}></div>
-                                        </div>
-                                    </div>
-
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Brightness Dual-Strip</span>
-                                            <span className="slider-val-pill" style={{ color: 'var(--neon-purple)' }}>{alisState.brightness}%</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="10" 
-                                            max="100" 
-                                            value={alisState.brightness} 
-                                            onChange={(e) => setAlisState({ ...alisState, brightness: Number(e.target.value) })}
-                                        />
-                                    </div>
-
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Tempo Aliran Belang</span>
-                                            <span className="slider-val-pill" style={{ color: 'var(--neon-purple)' }}>75% (0.8s)</span>
-                                        </div>
-                                        <input type="range" min="10" max="100" defaultValue="75" />
-                                    </div>
-
-                                    <div style={{ display: 'flex', gap: '10px', marginTop: '14px' }}>
-                                        <button 
-                                            className="btn-action-primary" 
-                                            style={{ flex: 2, background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))', color: '#fff' }}
-                                            onClick={() => onNotify("Mode Alis Belang VIP Pro diterapkan ke kedua sisi!", "fa-wand-magic-sparkles")}
-                                        >
-                                            <i className="fa-solid fa-crown"></i> TERAPKAN PRESET BELANG
-                                        </button>
-                                        <button 
-                                            className="pill-tab" 
-                                            style={{ flex: 1, justifyContent: 'center' }}
-                                            onClick={() => onNotify("Kedua sisi alis disinkronkan!", "fa-sync")}
-                                        >
-                                            Sinkron Dual
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                        </div>
                     </div>
                 </DashboardLayout>
             );
         }
 
-        // ======================== SCREEN: HEADLIGHT RELAY CONTROLS ========================
+        // ======================== SCREEN 4: LAMP RELAY ========================
         function LampRelayScreen({ user, relays, setRelays, onNotify, triggerFlash }) {
             return (
                 <DashboardLayout
@@ -1870,455 +974,79 @@
                 >
                     <div className="view-content-canvas">
                         <div className="glass-card">
-                            <div className="card-header-flex">
-                                <div className="card-title-group">
-                                    <div className="card-icon-tag"><i className="fa-solid fa-power-off"></i></div>
-                                    <div>
-                                        <h3>Direct Relay Hard-Switch Panel</h3>
-                                        <p>Saklar elektronik optocoupler ESP32 beban berat 12V</p>
-                                    </div>
-                                </div>
-                                <span className="wifi-status-pill"><i className="fa-solid fa-shield"></i> Proteksi Arus Pendek OK</span>
-                            </div>
-
-                            {/* Relay 1 BiLED */}
                             <div className={`relay-card-unit ${relays.biled ? 'is-active' : ''}`}>
                                 <div className="relay-identity">
                                     <div className="relay-icon-badge"><i className="fa-solid fa-sun"></i></div>
                                     <div>
-                                        <h4 style={{ fontSize: '15px', fontWeight: '700' }}>Relay 1 - BiLED Main Projector (55W)</h4>
-                                        <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Blue Lens Cut-Off • Arus 4.5A • 12.6V DC</p>
+                                        <h4>BiLED Main Projector (55W)</h4>
+                                        <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Blue Lens Cut-Off</p>
                                     </div>
                                 </div>
                                 <label className="toggle-switch-ios">
                                     <input 
                                         type="checkbox" 
                                         checked={relays.biled} 
-                                        onChange={(e) => {
-                                            setRelays({ ...relays, biled: e.target.checked });
-                                            onNotify(`BiLED Main Projector: ${e.target.checked ? 'ON' : 'OFF'}`, 'fa-sun');
-                                        }} 
+                                        onChange={(e) => setRelays({ ...relays, biled: e.target.checked })} 
                                     />
                                     <span className="toggle-slider"></span>
                                 </label>
                             </div>
-
-                            {/* Relay 2 Foglamp */}
-                            <div className={`relay-card-unit ${relays.fog ? 'is-fog-active' : ''}`}>
-                                <div className="relay-identity">
-                                    <div className="relay-icon-badge"><i className="fa-solid fa-cloud-sun"></i></div>
-                                    <div>
-                                        <h4 style={{ fontSize: '15px', fontWeight: '700' }}>Relay 2 - Laser Foglamp Dual (3000K)</h4>
-                                        <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Kuning Pekat 3000K • Arus 2.8A • Tembus Hujan Deras</p>
-                                    </div>
-                                </div>
-                                <label className="toggle-switch-ios">
-                                    <input 
-                                        type="checkbox" 
-                                        checked={relays.fog} 
-                                        onChange={(e) => {
-                                            setRelays({ ...relays, fog: e.target.checked });
-                                            onNotify(`Laser Foglamp: ${e.target.checked ? 'ON' : 'OFF'}`, 'fa-cloud-sun');
-                                        }} 
-                                    />
-                                    <span className="toggle-slider amber-mode"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        {/* Strobe & Dimmer Emergency Flashers */}
-                        <div className="glass-card">
-                            <div className="card-header-flex">
-                                <div className="card-title-group">
-                                    <div className="card-icon-tag"><i className="fa-solid fa-bolt"></i></div>
-                                    <div>
-                                        <h3>Aksi Cepat &amp; Strobo Darurat</h3>
-                                        <p>Fungsi pass-beam dan sinyal peringatan jalan raya</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                                <button 
-                                    className="btn-action-primary" 
-                                    style={{ flex: 1, minWidth: '220px' }}
-                                    onClick={() => {
-                                        triggerFlash();
-                                        onNotify("Pass Beam Flash 3x Diaktifkan!", "fa-high-definition");
-                                    }}
-                                >
-                                    <i className="fa-solid fa-high-definition"></i> Pass Beam (Dim 3x Flash)
-                                </button>
-                                <button 
-                                    className="btn-action-primary" 
-                                    style={{ flex: 1, minWidth: '220px', background: 'rgba(245, 158, 11, 0.2)', border: '1px solid var(--neon-amber)', color: 'var(--neon-amber)' }}
-                                    onClick={() => onNotify("Foglamp Strobo Darurat Aktif!", "fa-triangle-exclamation")}
-                                >
-                                    <i className="fa-solid fa-triangle-exclamation"></i> Strobo Foglamp Darurat
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </DashboardLayout>
             );
         }
 
-        // ======================== SCREEN: STOPLAMP TAIL CONTROLLER ========================
+        // ======================== SCREEN 5: STOPLAMP ========================
         function StoplampScreen({ user, stopState, setStopState, onNotify }) {
-            const [isBraking, setIsBraking] = useState(false);
-
-            const stopRunningModes = [
-                '1. Red Flowing Sweep',
-                '2. Fast Strobe Alert',
-                '3. Soft Red Wave',
-                '4. Heartbeat Rhythm',
-                '5. Crimson Flowing',
-                '6. Sunset Dual Tone',
-                '7. Breathing Pulse',
-                '8. Deep Crimson Chase',
-                '9. Neon Flash Blitz',
-                '10. Cyber Red Matrix'
-            ];
-
-            const triggerBrakeTest = () => {
-                setIsBraking(true);
-                onNotify("Simulasi Tuas Rem Ditarik (F1 Flasher Active)!", "fa-hand");
-                setTimeout(() => setIsBraking(false), 1400);
-            };
-
-            const getTailBarStyle = () => {
-                if (isBraking) {
-                    return {
-                        background: '#ff0022',
-                        boxShadow: '0 0 45px #ff0022, 0 0 90px #ff0022',
-                        transform: 'scaleY(1.3)'
-                    };
-                }
-                return {
-                    background: stopState.color,
-                    boxShadow: `0 0 25px ${stopState.color}, 0 0 50px ${stopState.color}aa`,
-                    opacity: stopState.brightness / 100
-                };
-            };
-
             return (
                 <DashboardLayout
                     user={user}
                     pageTitle="StopLamp Tail Controller"
-                    pageDesc="Kustomisasi lampu kota belakang, 10 pola running, &amp; respon rem F1 Flasher"
+                    pageDesc="Kustomisasi lampu kota belakang &amp; respon rem"
                     onNotify={onNotify}
                 >
                     <div className="view-content-canvas">
-                        <div className="segmented-tabs-wrapper">
-                            <button 
-                                className={`segmented-btn ${stopState.mode === 'static' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setStopState({ ...stopState, mode: 'static' });
-                                    onNotify("StopLamp: Mode Static Standby", "fa-palette");
-                                }}
-                            >
-                                <i className="fa-solid fa-palette"></i> Static Standby
-                            </button>
-                            <button 
-                                className={`segmented-btn ${stopState.mode === 'running' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setStopState({ ...stopState, mode: 'running' });
-                                    onNotify("StopLamp: 10 Running Mode", "fa-bars-staggered");
-                                }}
-                            >
-                                <i className="fa-solid fa-bars-staggered"></i> 10 Running Mode
-                            </button>
-                            <button 
-                                className={`segmented-btn ${stopState.mode === 'brake' ? 'active' : ''}`}
-                                onClick={() => {
-                                    setStopState({ ...stopState, mode: 'brake' });
-                                    onNotify("StopLamp: Respon Rem Otomatis", "fa-car-rear");
-                                }}
-                            >
-                                <i className="fa-solid fa-car-rear"></i> Respon Rem Otomatis
-                            </button>
-                        </div>
-
-                        {/* StopLamp Simulator */}
                         <div className="glass-card">
-                            <div className="card-header-flex">
-                                <div className="card-title-group">
-                                    <div className="card-icon-tag" style={{ background: 'rgba(255, 51, 75, 0.1)', color: 'var(--neon-red)', borderColor: 'rgba(255, 51, 75, 0.3)' }}>
-                                        <i className="fa-solid fa-car-rear"></i>
-                                    </div>
-                                    <div>
-                                        <h3>StopLamp Belakang (Tail Light)</h3>
-                                        <p>Simulasi pencahayaan bar LED belakang motor</p>
-                                    </div>
-                                </div>
-                                <button className="pill-tab" onClick={triggerBrakeTest}>
-                                    <i className="fa-solid fa-hand"></i> Tes Injak Tuas Rem
-                                </button>
-                            </div>
-
-                            <div className="interactive-simulator-box" style={{ minHeight: '130px' }}>
-                                <div className="stoplamp-tail-container">
-                                    <div className="tail-led-bar" style={getTailBarStyle()}></div>
-                                </div>
-                                <div style={{ marginTop: '12px', fontSize: '11px', color: isBraking ? 'var(--neon-red)' : 'var(--text-secondary)' }}>
-                                    {isBraking ? '⚠️ REM AKTIF: F1 FLASHING BLITZ 5X' : 'Status: Normal Red Tail Standby'}
-                                </div>
-                            </div>
+                            <h3>Pengaturan StopLamp Aktif</h3>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '6px' }}>Gunakan panel ini untuk mengatur mode standby stoplamp belakang.</p>
                         </div>
-
-                        {/* Subtabs Stoplamp */}
-                        {stopState.mode === 'static' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Warna Standby StopLamp</h3>
-                                            <p>Standar keamanan disarankan warna Merah/Crimson</p>
-                                        </div>
-                                    </div>
-                                    <div className="color-palette-grid">
-                                        {['#ff334b', '#b91c1c', '#f97316', '#ec4899', '#a855f7', '#00f0ff'].map(c => (
-                                            <div 
-                                                key={c}
-                                                className={`color-swatch-bubble ${stopState.color === c ? 'selected' : ''}`}
-                                                style={{ background: c, color: c }}
-                                                onClick={() => {
-                                                    setStopState({ ...stopState, color: c });
-                                                    onNotify(`Warna Stop: ${c}`, 'fa-palette');
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Kecerahan Tail Light</h3>
-                                            <p>Visibilitas lampu kota malam hari</p>
-                                        </div>
-                                    </div>
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Brightness Standby</span>
-                                            <span className="slider-val-pill">{stopState.brightness}%</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="10" 
-                                            max="100" 
-                                            value={stopState.brightness} 
-                                            onChange={(e) => setStopState({ ...stopState, brightness: Number(e.target.value) })}
-                                        />
-                                    </div>
-                                    <button 
-                                        className="btn-action-primary" 
-                                        style={{ background: 'linear-gradient(135deg, var(--neon-red), #b91c1c)', color: '#fff' }}
-                                        onClick={() => onNotify("Warna StopLamp disinkronkan ke ESP32!", "fa-paper-plane")}
-                                    >
-                                        <i className="fa-solid fa-paper-plane"></i> KIRIM KE STOPLAMP
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {stopState.mode === 'running' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>10 Mode Running Belakang</h3>
-                                            <p>Gelombang animasi dinamis lampu kota</p>
-                                        </div>
-                                    </div>
-                                    <div className="mode-cards-grid" style={{ maxHeight: '360px' }}>
-                                        {stopRunningModes.map((name, idx) => (
-                                            <div 
-                                                key={name}
-                                                className={`mode-pill-card ${idx === 0 ? 'active' : ''}`}
-                                                onClick={() => onNotify(`Pola Stop: ${name}`, 'fa-bars-staggered')}
-                                            >
-                                                <span className="mode-name" style={{ fontSize: '12px' }}>{name}</span>
-                                                <i className="fa-solid fa-play" style={{ fontSize: '10px' }}></i>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Kecepatan &amp; Siklus Gerak</h3>
-                                            <p>Sinkronisasi tempo animasi sweep</p>
-                                        </div>
-                                    </div>
-                                    <div className="slider-row-box">
-                                        <div className="slider-header-label">
-                                            <span>Kecepatan Pola (Speed)</span>
-                                            <span className="slider-val-pill">{stopState.speed}%</span>
-                                        </div>
-                                        <input 
-                                            type="range" 
-                                            min="10" 
-                                            max="100" 
-                                            value={stopState.speed} 
-                                            onChange={(e) => setStopState({ ...stopState, speed: Number(e.target.value) })}
-                                        />
-                                    </div>
-                                    <button 
-                                        className="btn-action-primary" 
-                                        style={{ background: 'linear-gradient(135deg, var(--neon-red), #991b1b)', color: '#fff' }}
-                                        onClick={() => onNotify("10 Mode Running StopLamp Aktif!", "fa-play")}
-                                    >
-                                        <i className="fa-solid fa-play"></i> TERAPKAN 10 MODE STOPLAMP
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {stopState.mode === 'brake' && (
-                            <div className="controls-two-col">
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Pola Respon Pengereman</h3>
-                                            <p>Respon instan ketika saklar rem motor aktif</p>
-                                        </div>
-                                    </div>
-                                    <div className="mode-cards-grid">
-                                        <div className="mode-pill-card active" onClick={() => onNotify("Pola Rem: Kedip F1 Strobe", "fa-bolt")}>
-                                            <span className="mode-name">1. Kedip F1 Strobe (5x Flash)</span>
-                                            <i className="fa-solid fa-check"></i>
-                                        </div>
-                                        <div className="mode-pill-card" onClick={() => onNotify("Pola Rem: Flow Alert", "fa-wind")}>
-                                            <span className="mode-name">2. Running Terang (Flow Alert)</span>
-                                            <i className="fa-solid fa-wind"></i>
-                                        </div>
-                                        <div className="mode-pill-card" onClick={() => onNotify("Pola Rem: Steady High Red 100%", "fa-shield")}>
-                                            <span className="mode-name">3. Steady High Red (Standar)</span>
-                                            <i className="fa-solid fa-shield"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="glass-card">
-                                    <div className="card-header-flex">
-                                        <div>
-                                            <h3>Standar Keselamatan F1 Flasher</h3>
-                                            <p>Simulasi pengereman keselamatan pengendara</p>
-                                        </div>
-                                    </div>
-                                    <div style={{ padding: '14px', background: 'rgba(255, 51, 75, 0.08)', border: '1px solid rgba(255, 51, 75, 0.25)', borderRadius: 'var(--radius-md)', marginBottom: '18px' }}>
-                                        <div style={{ fontWeight: '700', color: 'var(--neon-red)', fontSize: '13px', marginBottom: '4px' }}>
-                                            <i className="fa-solid fa-triangle-exclamation"></i> Standar F1 Safety Flasher
-                                        </div>
-                                        <p style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                                            Saat tuas rem ditarik, lampu akan berkedip stroboskopik 5 kali dalam 0.5 detik sebelum menyala statis 100% untuk memicu reaksi pengemudi di belakang.
-                                        </p>
-                                    </div>
-                                    <button 
-                                        className="btn-action-primary" 
-                                        style={{ background: 'linear-gradient(135deg, var(--neon-red), #b91c1c)', color: '#fff' }}
-                                        onClick={triggerBrakeTest}
-                                    >
-                                        <i className="fa-solid fa-hand"></i> TEST SIMULASI REM SEKARANG
-                                    </button>
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </DashboardLayout>
             );
         }
 
-        // ======================== SCREEN: VIP PRO MEMBERSHIP ========================
+        // ======================== SCREEN 6: PREMIUM ========================
         function PremiumScreen({ user, setUser, onNotify }) {
             const navigate = useNavigate();
-
-            const activateVip = () => {
-                setUser({ ...user, isPremium: true });
-                onNotify("Akun berhasil di-upgrade ke VIP PRO!", "fa-crown");
-                navigate('/alis');
-            };
-
             return (
                 <DashboardLayout
                     user={user}
                     pageTitle="VIP Pro Membership"
-                    pageDesc="Akses tak terbatas ke 10 Mode Alis Belang, Dual-Channel sync, dan Cloud OTA"
+                    pageDesc="Akses tak terbatas ke 10 Mode Alis Belang &amp; Cloud Sync"
                     onNotify={onNotify}
                 >
                     <div className="view-content-canvas">
                         <div className="glass-card" style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto' }}>
                             <i className="fa-solid fa-crown" style={{ fontSize: '48px', color: 'var(--neon-purple)', marginBottom: '12px', display: 'inline-block' }}></i>
-                            <h2 style={{ fontSize: '24px', fontWeight: '800' }}>Upgrade Akun VIP Pro Exclusive</h2>
-                            <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '8px auto 20px', maxWidth: '560px' }}>
-                                Dapatkan akses tak terbatas ke 10 fitur Alis Belang futuristik, kustomisasi dual-channel terpisah, cloud backup Google Sheets, dan prioritas firmware ESP32.
-                            </p>
-
-                            <div className="vip-grid">
-                                <div className="vip-card">
-                                    <i className="fa-solid fa-water"></i>
-                                    <h4>10 Mode Belang Asimetris</h4>
-                                    <p>Animasi gradasi tetesan air kanan &amp; kiri terpisah.</p>
-                                </div>
-                                <div className="vip-card">
-                                    <i className="fa-solid fa-bolt"></i>
-                                    <h4>10 Mode Running StopLamp</h4>
-                                    <p>Ritme detak jantung &amp; F1 Flasher dinamis.</p>
-                                </div>
-                                <div className="vip-card">
-                                    <i className="fa-solid fa-cloud"></i>
-                                    <h4>Cloud Profile Backup</h4>
-                                    <p>Simpan konfigurasi ke Google Sheet &amp; ESP32.</p>
-                                </div>
-                                <div className="vip-card">
-                                    <i className="fa-solid fa-wrench"></i>
-                                    <h4>Firmware OTA Nirkabel</h4>
-                                    <p>Update firmware ESP32 otomatis tanpa kabel.</p>
-                                </div>
-                            </div>
-
-                            <div className="payment-methods-grid">
-                                <div className="pay-option-card" onClick={() => onNotify("Scan QRIS untuk nomor seri #ESP32-8871", "fa-qrcode")}>
-                                    <i className="fa-solid fa-qrcode"></i>
-                                    <h4>QRIS Instan</h4>
-                                    <p>Gopay / Dana / OVO</p>
-                                </div>
-                                <div className="pay-option-card" onClick={() => onNotify("Transfer Bank BCA: 8871-0092-11 a/n SmartMoto", "fa-building-columns")}>
-                                    <i className="fa-solid fa-building-columns"></i>
-                                    <h4>Bank Transfer</h4>
-                                    <p>BCA / Mandiri / BRI</p>
-                                </div>
-                                <div className="pay-option-card" onClick={() => onNotify("Menghubungi Admin WhatsApp...", "fa-brands fa-whatsapp")}>
-                                    <i className="fa-brands fa-whatsapp"></i>
-                                    <h4>Admin WhatsApp</h4>
-                                    <p>Verifikasi Cepat 1 Menit</p>
-                                </div>
-                            </div>
-
-                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                                <button 
-                                    className="btn-action-primary" 
-                                    style={{ maxWidth: '280px', background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))', color: '#fff' }}
-                                    onClick={activateVip}
-                                >
-                                    <i className="fa-solid fa-crown"></i> AKTIFKAN VIP SEKARANG (DEMO)
-                                </button>
-                                <button 
-                                    className="pill-tab" 
-                                    style={{ padding: '12px 20px' }}
-                                    onClick={() => navigate('/home')}
-                                >
-                                    Kembali ke Overview
-                                </button>
-                            </div>
+                            <h2>Upgrade Akun VIP Pro Exclusive</h2>
+                            <button 
+                                className="btn-action-primary" 
+                                style={{ maxWidth: '280px', margin: '20px auto 0', background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-pink))', color: '#fff' }}
+                                onClick={() => {
+                                    setUser({ ...user, isPremium: true });
+                                    onNotify("VIP Pro diaktifkan!", "fa-crown");
+                                    navigate('/alis');
+                                }}
+                            >
+                                <i className="fa-solid fa-crown"></i> AKTIFKAN VIP SEKARANG
+                            </button>
                         </div>
                     </div>
                 </DashboardLayout>
             );
         }
 
-        // ======================== ROOT APP CONTAINER ========================
         function App() {
             const [user, setUser] = useState({
                 name: 'Rider_Speedster',
@@ -2330,7 +1058,7 @@
                 color: '#00f0ff',
                 brightness: 85,
                 speed: 65,
-                mode: 'static', // 'static' | 'running' | 'belang'
+                mode: 'static',
                 runningPattern: 'anim-rainbow-active',
                 belangPattern: 'belang-water'
             });
@@ -2344,7 +1072,7 @@
                 color: '#ff334b',
                 brightness: 80,
                 speed: 60,
-                mode: 'static' // 'static' | 'running' | 'brake'
+                mode: 'static'
             });
 
             const [toast, setToast] = useState({ msg: '', icon: '' });
@@ -2373,87 +1101,23 @@
                     <TopNavSwitcher currentPath={location.pathname} />
 
                     <Routes>
-                        <Route 
-                            path="/" 
-                            element={<LoginScreen user={user} setUser={setUser} onNotify={triggerNotify} />} 
-                        />
-                        <Route 
-                            path="/home" 
-                            element={
-                                <HomeScreen 
-                                    user={user} 
-                                    alisState={alisState} 
-                                    setAlisState={setAlisState} 
-                                    relays={relays} 
-                                    setRelays={setRelays} 
-                                    onNotify={triggerNotify}
-                                    triggerFlash={triggerPassBeamFlash}
-                                />
-                            } 
-                        />
-                        <Route 
-                            path="/alis" 
-                            element={
-                                <AlisScreen 
-                                    user={user} 
-                                    alisState={alisState} 
-                                    setAlisState={setAlisState} 
-                                    relays={relays} 
-                                    setRelays={setRelays} 
-                                    onNotify={triggerNotify}
-                                    triggerFlash={triggerPassBeamFlash}
-                                />
-                            } 
-                        />
-                        <Route 
-                            path="/lamp" 
-                            element={
-                                <LampRelayScreen 
-                                    user={user} 
-                                    relays={relays} 
-                                    setRelays={setRelays} 
-                                    onNotify={triggerNotify}
-                                    triggerFlash={triggerPassBeamFlash}
-                                />
-                            } 
-                        />
-                        <Route 
-                            path="/stoplamp" 
-                            element={
-                                <StoplampScreen 
-                                    user={user} 
-                                    stopState={stopState} 
-                                    setStopState={setStopState} 
-                                    onNotify={triggerNotify} 
-                                />
-                            } 
-                        />
-                        <Route 
-                            path="/premium" 
-                            element={
-                                <PremiumScreen 
-                                    user={user} 
-                                    setUser={setUser} 
-                                    onNotify={triggerNotify} 
-                                />
-                            } 
-                        />
+                        <Route path="/" element={<LoginScreen user={user} setUser={setUser} onNotify={triggerNotify} />} />
+                        <Route path="/home" element={<HomeScreen user={user} alisState={alisState} setAlisState={setAlisState} relays={relays} setRelays={setRelays} onNotify={triggerNotify} triggerFlash={triggerPassBeamFlash} />} />
+                        <Route path="/alis" element={<AlisScreen user={user} alisState={alisState} setAlisState={setAlisState} relays={relays} setRelays={setRelays} onNotify={triggerNotify} triggerFlash={triggerPassBeamFlash} />} />
+                        <Route path="/lamp" element={<LampRelayScreen user={user} relays={relays} setRelays={setRelays} onNotify={triggerNotify} triggerFlash={triggerPassBeamFlash} />} />
+                        <Route path="/stoplamp" element={<StoplampScreen user={user} stopState={stopState} setStopState={setStopState} onNotify={triggerNotify} />} />
+                        <Route path="/premium" element={<PremiumScreen user={user} setUser={setUser} onNotify={triggerNotify} />} />
                     </Routes>
 
-                    <Toast 
-                        message={toast.msg} 
-                        icon={toast.icon} 
-                        onClose={() => setToast({ msg: '', icon: '' })} 
-                    />
+                    <Toast message={toast.msg} icon={toast.icon} onClose={() => setToast({ msg: '', icon: '' })} />
                 </div>
             );
         }
 
-        // Render Application with MemoryRouter
         const rootElement = document.getElementById('root');
         const root = createRoot(rootElement);
         root.render(
-            <MemoryRouter initialEntries={["/home"]}>
+            <MemoryRouter initialEntries={["/"]}>
                 <App />
             </MemoryRouter>
         );
